@@ -9,6 +9,7 @@ struct ContentView: View {
             VStack(spacing: 12) {
                 if let card = viewModel.currentCard {
                     FlashcardView(card: card)
+                    reviewButtons
                     controlStrip
                 } else {
                     Text("No cards found for your filters.")
@@ -48,6 +49,39 @@ struct ContentView: View {
         }
     }
 
+    private var reviewButtons: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Spaced repetition rating")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            HStack {
+                ForEach(ReviewGrade.allCases) { grade in
+                    Button {
+                        viewModel.reviewCurrentCard(grade)
+                        viewModel.advance()
+                    } label: {
+                        Text(grade.label)
+                            .font(.subheadline.weight(.semibold))
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .frame(maxWidth: .infinity)
+                            .background(Capsule().fill(color(for: grade).opacity(0.18)))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+
+    private func color(for grade: ReviewGrade) -> Color {
+        switch grade {
+        case .forgot: return .red
+        case .hard: return .orange
+        case .medium: return .yellow
+        case .easy: return .green
+        }
+    }
+
     private var controlStrip: some View {
         HStack {
             Button(action: viewModel.goBack) {
@@ -57,9 +91,13 @@ struct ContentView: View {
 
             Spacer()
 
-            Text("Card \(viewModel.currentIndex + 1) / \(max(viewModel.cards.count, 1))")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
+            VStack(alignment: .center, spacing: 2) {
+                Text("Card \(viewModel.currentIndex + 1) / \(max(viewModel.schedule.count, 1))")
+                    .font(.footnote)
+                Text("Due today: \(viewModel.dueTodayCount)")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
 
             Spacer()
 
