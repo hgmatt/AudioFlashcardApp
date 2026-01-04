@@ -14,8 +14,8 @@ public enum CardMode: String, CaseIterable, Identifiable, Codable {
     }
 }
 
-public struct Flashcard: Identifiable, Equatable {
-    public let id = UUID()
+public struct Flashcard: Identifiable, Equatable, Hashable {
+    public let id: String
     public let verb: Verb
     public let tense: Tense
     public let subject: SubjectPronoun
@@ -23,6 +23,7 @@ public struct Flashcard: Identifiable, Equatable {
     public let conjugatedForm: String
 
     public init(verb: Verb, tense: Tense, subject: SubjectPronoun, mode: CardMode, conjugatedForm: String) {
+        self.id = "\(verb.infinitive)-\(tense.rawValue)-\(subject.rawValue)-\(mode.rawValue)"
         self.verb = verb
         self.tense = tense
         self.subject = subject

@@ -3,11 +3,13 @@
 SwiftUI-based flashcard trainer for Spanish verb conjugations with audio-only or written practice modes.
 
 ## Features
-- Toggle between **audio response** prompts and **written response** prompts.
+- Toggle between **audio response** prompts, **spoken practice**, and **written response** prompts.
+- Built-in **spaced repetition** (Forgot/Hard/Medium/Easy) that reschedules due cards automatically.
 - Filter deck by verb ending, tense, subject pronoun, and regularity (regular, irregular, stem-change, spelling-change, highly irregular).
 - Latin American friendly mode that hides `vosotros` forms.
 - Includes a local JSON dataset with **1,000** high-frequency Spanish verbs and starter irregular forms.
 - Dynamic conjugation generator for regular tenses (present, preterite, imperfect, future) with overrides for key irregular verbs.
+- A **graded reader** that rewrites Spanish articles to A1–C2 levels, lets you underline vocabulary, and turns those underlined words into instant flashcards.
 
 ## Running
 1. Open the package in Xcode 15+ on macOS/iOS 17 SDK.
