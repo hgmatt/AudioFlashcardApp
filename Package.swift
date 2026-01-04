@@ -10,6 +10,22 @@ let package = Package(
         .library(
             name: "AudioFlashcardApp",
             targets: ["AudioFlashcardApp"]
+        ),
+        .iOSApplication(
+            name: "AudioFlashcardApp",
+            targets: ["AudioFlashcardApp"],
+            bundleIdentifier: "com.audioflashcard.app",
+            teamIdentifier: nil,
+            displayVersion: "1.0",
+            bundleVersion: "1",
+            iconAssetName: nil,
+            accentColorAssetName: nil,
+            supportedDeviceFamilies: [.pad, .phone],
+            supportedInterfaceOrientations: [
+                .portrait,
+                .landscapeLeft,
+                .landscapeRight
+            ]
         )
     ],
     targets: [
