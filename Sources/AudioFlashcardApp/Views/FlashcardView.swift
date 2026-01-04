@@ -30,7 +30,7 @@ struct FlashcardView: View {
                     case .audioPrompt:
                         Image(systemName: "waveform")
                             .font(.system(size: 40, weight: .medium))
-                            .foregroundStyle(.accentColor)
+                            .foregroundStyle(Color.accentColor)
                         Text("Say the form aloud")
                             .font(.headline)
                         Text(prompt)
